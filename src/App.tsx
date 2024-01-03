@@ -11,9 +11,16 @@ const App: React.FC = () => {
   // const handleAdd = (e: React.SyntheticEvent) => {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (todos) {
+      // setTodosList([...todosList, {id: Date.now(), todos: todos, isDone: false}])
+      setTodosList([...todosList, {id: Date.now(), todos, isDone: false}]);
+      // Empty input field
+      setTodos("");
+    }
   };
 
-  console.log(todos);
+  console.log(todosList);
 
   return (
     <div className="App">
