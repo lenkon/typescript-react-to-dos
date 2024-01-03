@@ -13,7 +13,7 @@ interface Props{
 const InputField: React.FC<Props> = ({ todos, setTodos, handleAdd }) => { 
   // const InputField = () => { 
   return (
-    <form className='input' onSubmit={handleAdd}>
+    <form className='input' onSubmit={(e) => handleAdd(e)}>
       <input type='input' 
         value={todos}
         onChange={
