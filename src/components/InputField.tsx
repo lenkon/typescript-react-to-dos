@@ -5,14 +5,15 @@ import "./styles.css"
 interface Props{
   todos: string; 
   setTodos: React.Dispatch<React.SetStateAction<string>>;
+  handleAdd: (e: React.FormEvent) => void;
 }
 
 // const InputField = ({todos, setTodos}:{todos:string, setTodos:React.Dispatch<React.SetStateAction<string>>}) => {
 // const InputField = ({ todos, setTodos }: Props) => {  
-const InputField: React.FC<Props> = ({ todos, setTodos }) => { 
+const InputField: React.FC<Props> = ({ todos, setTodos, handleAdd }) => { 
   // const InputField = () => { 
   return (
-    <form className='input'>
+    <form className='input' onSubmit={handleAdd}>
       <input type='input' 
         value={todos}
         onChange={
