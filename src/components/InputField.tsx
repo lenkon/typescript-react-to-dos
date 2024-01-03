@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import "./styles.css"
 // rafce
 
@@ -12,9 +12,18 @@ interface Props{
 // const InputField = ({ todos, setTodos }: Props) => {  
 const InputField: React.FC<Props> = ({ todos, setTodos, handleAdd }) => { 
   // const InputField = () => { 
+
+  // Remove the blur on submission
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
-    <form className='input' onSubmit={(e) => handleAdd(e)}>
-      <input type='input' 
+    <form className='input' onSubmit={(e) => {
+      handleAdd(e);
+      inputRef.current?.blur();
+      }}>
+      <input 
+        ref={inputRef}
+        type='input' 
         value={todos}
         onChange={
           (e) => setTodos(e.target.value)
