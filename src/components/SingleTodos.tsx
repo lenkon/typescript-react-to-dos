@@ -20,9 +20,14 @@ const SingleTodos = ({ todo, list, setList }: Props) => {
 
   return (
     <form className='todos-single'>
-      <span className='todos-single--text'>
-        { todo.todos }
-      </span>
+      {
+        todo.isDone ? (
+          <s className='todos-single--text'>{ todo.todos }</s>
+        ) : (
+          <span className='todos-single--text'>{ todo.todos }</span>
+        )
+      }
+      
       <div>
         <span className="icon"><AiFillEdit /></span>
         <span className="icon">< AiFillDelete /></span>
