@@ -9,9 +9,11 @@ type Props = {
 
 const SingleTodos = ({ todo, list, setList }: Props) => {
   return (
-    <div>
-      
-    </div>
+    <form className='todos-single'>
+      <span className='todos-single--text'>
+        { todo.todos }
+      </span>
+    </form>
   )
 }
 
