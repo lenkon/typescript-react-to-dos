@@ -21,8 +21,6 @@ const App: React.FC = () => {
     }
   };
 
-  console.log(list);
-
   return (
     <div className="App">
       <span className='heading'>To Dos</span>
