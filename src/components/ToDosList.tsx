@@ -10,7 +10,11 @@ interface Props {
 const ToDosList: React.FC<Props> = ({list, setList}) => {
   return (
     <div>
-      
+      {
+        list.map((todo) =>(
+          <li>{todo.todos}</li>
+        ))
+      }
     </div>
   )
 }
