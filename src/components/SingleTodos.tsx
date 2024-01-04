@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Todos } from '../model';
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
@@ -10,6 +10,9 @@ type Props = {
 }
 
 const SingleTodos = ({ todo, list, setList }: Props) => {
+  const [edit, setEdit] = useState(false);
+  const [editTodo, setEditTodo] = useState(todo.todos);
+
   const handleDone = (id: number) => {
     setList(
       list.map((el) => 
@@ -35,7 +38,13 @@ const SingleTodos = ({ todo, list, setList }: Props) => {
       }
       
       <div>
-        <span className="icon"><AiFillEdit /></span>
+        <span className="icon" onClick={ () => {
+          if(!edit && !todo.isDone) {
+            setEdit(!edit);
+          }
+        }}>
+          <AiFillEdit />
+        </span>
         <span className="icon" onClick={() => handleDelete(todo.id)}>< AiFillDelete /></span>
         <span className="icon" onClick={() => handleDone(todo.id)}>< MdDone /></span>
         {/* span.icon */}
