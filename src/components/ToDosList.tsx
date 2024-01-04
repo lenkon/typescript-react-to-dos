@@ -1,6 +1,7 @@
 import React from 'react'
 // rafce
 import { Todos } from '../model';
+import "./styles.css";
 
 interface Props {
   list: Todos[];
@@ -9,7 +10,7 @@ interface Props {
 
 const ToDosList: React.FC<Props> = ({list, setList}) => {
   return (
-    <div>
+    <div className='todos'>
       {
         list.map((todo) =>(
           <li>{todo.todos}</li>
