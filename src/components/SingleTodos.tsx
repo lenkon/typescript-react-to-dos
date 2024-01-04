@@ -30,15 +30,21 @@ const SingleTodos = ({ todo, list, setList }: Props) => {
   return (
     <form className='todos-single'>
       {
-        todo.isDone ? (
-          <s className='todos-single--text'>{ todo.todos }</s>
-        ) : (
-          <span className='todos-single--text'>{ todo.todos }</span>
-        )
+        edit ? (
+          <input 
+            value={editTodo} 
+            onChange={(e) => setEditTodo(e.target.value)} 
+            className='todos-single--text'/>
+        ) : 
+          todo.isDone ? (
+            <s className='todos-single--text'>{ todo.todos }</s>
+          ) : (
+            <span className='todos-single--text'>{ todo.todos }</span>
+          )        
       }
       
       <div>
-        <span className="icon" onClick={ () => {
+        <span className="icon" onClick={() => {
           if(!edit && !todo.isDone) {
             setEdit(!edit);
           }
