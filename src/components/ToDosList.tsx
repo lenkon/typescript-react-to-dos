@@ -7,6 +7,8 @@ import SingleTodos from './SingleTodos';
 interface Props {
   list: Todos[];
   setList: React.Dispatch<React.SetStateAction<Todos[]>>;
+  completedTodos: Todos[];
+  setCompletedTodos: React.Dispatch<React.SetStateAction<Todos[]>>;
 }
 
 const ToDosList: React.FC<Props> = ({list, setList}) => {

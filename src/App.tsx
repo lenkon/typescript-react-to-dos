@@ -3,10 +3,12 @@ import './App.css';
 import InputField from './components/InputField';
 import { Todos } from './model';
 import ToDosList from './components/ToDosList';
+import {} from 'react-beautiful-dnd'
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<string>("");
   const [list, setList] = useState<Todos[]>([]);
+  const [completedTodos, setCompletedTodos] = useState<Todos[]>([])
 
   // const handleAdd = (e: React.ChangeEvent<HTMLInputElement>) => {
   // const handleAdd = (e: React.SyntheticEvent) => {
@@ -22,16 +24,18 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
-      <span className='heading'>To Dos</span>
-      <InputField todos={todos} setTodos={setTodos} handleAdd={handleAdd}/>      
-      {
-        // list.map((e) => (
-        //   <><li>{e.todos}</li><li>{e.id}</li></>          
-        // ))
-      }
-      <ToDosList list={list} setList={setList}/>
-    </div>
+    <DragDropContext>
+      <div className="App">
+        <span className='heading'>To Dos</span>
+        <InputField todos={todos} setTodos={setTodos} handleAdd={handleAdd}/>      
+        {
+          // list.map((e) => (
+          //   <><li>{e.todos}</li><li>{e.id}</li></>          
+          // ))
+        }
+        <ToDosList list={list} setList={setList} completedTodos={completedTodos} setCompletedTodos={setCompletedTodos}/>
+      </div>
+    </DragDropContext>
   );
 };
 
