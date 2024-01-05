@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 // rafce
 import { Todos } from '../model';
 import "./styles.css";
@@ -12,19 +12,18 @@ interface Props {
 const ToDosList: React.FC<Props> = ({list, setList}) => {
   return (
     // <div className='todos'>
-      // {
-      //   list.map((todo) =>(
-      //     // <li>{todo.todos}</li>
-      //     <SingleTodos 
-      //       todo={todo} 
-      //       key={todo.id}
-      //       list={list}
-      //       setList={setList}
-      //     />
-      //   ))
-      // }
+    //   {
+    //     list.map((todo) =>(
+    //       // <li>{todo.todos}</li>
+    //       <SingleTodos 
+    //         todo={todo} 
+    //         key={todo.id}
+    //         list={list}
+    //         setList={setList}
+    //       />
+    //     ))
+    //   }
     // </div>
-
     <div className="container">
       <div className="todos">
         <span className="todos-heading">
@@ -42,10 +41,22 @@ const ToDosList: React.FC<Props> = ({list, setList}) => {
         }
       </div>
       <div className="todos remove">
-
+        <span className="todos-heading">
+          Completed Tasks
+        </span>
+        {
+          list.map((todo) =>(
+            <SingleTodos 
+              todo={todo} 
+              key={todo.id}
+              list={list}
+              setList={setList}
+            />
+          ))
+        }
       </div>
-    </div>
-  );
+    </div>  
+  )
 };
 
 export default ToDosList
