@@ -4,12 +4,13 @@ import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 
 type Props = {
+  index: number;  
   todo: Todos;
   list: Todos[];
   setList: React.Dispatch<React.SetStateAction<Todos[]>>;
 }
 
-const SingleTodos = ({ todo, list, setList }: Props) => {
+const SingleTodos = ({ index, todo, list, setList }: Props) => {
   const [edit, setEdit] = useState(false);
   const [editTodo, setEditTodo] = useState(todo.todos);
 

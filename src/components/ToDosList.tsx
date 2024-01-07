@@ -23,8 +23,9 @@ const ToDosList: React.FC<Props> = ({list, setList, completedTodos, setCompleted
                 Active Tasks
               </span>
               {
-                list.map((todo) =>(
+                list.map((todo, index) =>(
                   <SingleTodos 
+                    index={index}
                     todo={todo} 
                     key={todo.id}
                     list={list}
@@ -45,9 +46,9 @@ const ToDosList: React.FC<Props> = ({list, setList, completedTodos, setCompleted
                 Completed Tasks
               </span>
               {
-                completedTodos.map((todo) =>(
+                completedTodos.map((todo, index) =>(
                   <SingleTodos 
-                    // index= 
+                    index={index} 
                     todo={todo} 
                     key={todo.id}
                     list={completedTodos}
