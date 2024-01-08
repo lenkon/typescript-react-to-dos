@@ -15,10 +15,10 @@ interface Props {
 const ToDosList: React.FC<Props> = ({list, setList, completedTodos, setCompletedTodos}) => {
   return (    
     <div className="container">
-      <Droppable droppableId="TodosList">
+      <Droppable droppableId='TodosList'>
         {
-          (provided) => (
-            <div className="todos" ref={provided.innerRef} {...provided.droppableProps}>
+          (provided, snapshot) => (
+            <div className={`todos ${snapshot.isDraggingOver ? 'dragactive' : ''}`} ref={provided.innerRef} {...provided.droppableProps}>
               <span className="todos-heading">
                 Active Tasks
               </span>
@@ -33,15 +33,16 @@ const ToDosList: React.FC<Props> = ({list, setList, completedTodos, setCompleted
                   />
                 ))
               }
+              {provided.placeholder}
             </div>
           )
         }        
       </Droppable>
 
-      <Droppable  droppableId="TodosRemove">
+      <Droppable  droppableId='TodosRemove'>
         {
-          (provided) => (
-            <div className="todos remove"  ref={provided.innerRef} {...provided.droppableProps}>
+          (provided, snapshot) => (
+            <div className={`todos remove ${snapshot.isDraggingOver ? 'dragcomplete' : ''}`}  ref={provided.innerRef} {...provided.droppableProps}>
               <span className="todos-heading">
                 Completed Tasks
               </span>
@@ -56,6 +57,7 @@ const ToDosList: React.FC<Props> = ({list, setList, completedTodos, setCompleted
                   />
                 ))
               }
+              {provided.placeholder}
             </div>
           )
         }        
