@@ -12,8 +12,8 @@ type Props = {
 }
 
 const SingleTodos = ({ index, todo, list, setList }: Props) => {
-  const [edit, setEdit] = useState(false);
-  const [editTodo, setEditTodo] = useState(todo.todos);
+  const [edit, setEdit] = useState<boolean>(false);
+  const [editTodo, setEditTodo] = useState<string>(todo.todos);
 
   const handleDone = (id: number) => {
     setList(
@@ -80,7 +80,7 @@ const SingleTodos = ({ index, todo, list, setList }: Props) => {
               </span>
               <span className="icon" onClick={() => handleDelete(todo.id)}>< AiFillDelete /></span>
               <span className="icon" onClick={() => handleDone(todo.id)}>< MdDone /></span>
-              {/* span.icon */}
+              
             </div>
           </form>
         )

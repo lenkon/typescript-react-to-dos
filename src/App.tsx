@@ -73,7 +73,7 @@ const App: React.FC = () => {
     let active = list;
     let complete = completedTodos;
     // Source Logic
-    if (source.droppableId === "TodosActive") {
+    if (source.droppableId === "Active") {
       add = active[source.index];
       active.splice(source.index, 1);
     } else {
@@ -82,7 +82,7 @@ const App: React.FC = () => {
     }
 
     // Destination Logic
-    if (destination.droppableId === "TodosActive") {
+    if (destination.droppableId === "Active") {
       active.splice(destination.index, 0, add);
     } else {
       complete.splice(destination.index, 0, add);
@@ -106,7 +106,7 @@ const App: React.FC = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
-        <span className="heading">Taskify</span>
+        <span className="heading">To Dos</span>
         <InputField todos={todos} setTodos={setTodos} handleAdd={handleAdd} />
         <ToDosList
           list={list}
