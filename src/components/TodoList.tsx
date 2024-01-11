@@ -2,7 +2,7 @@ import React from 'react';
 // rafce
 import { Todos } from '../model';
 import "./styles.css";
-import SingleTodos from './SingleTodos';
+import SingleTodos from './SingleTodo';
 import { Droppable } from 'react-beautiful-dnd'
 
 interface Props {

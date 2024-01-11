@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import InputField from './components/InputField';
 import { Todos } from './model';
-import ToDosList from './components/ToDosList';
+import ToDosList from './components/TodoList';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 const App: React.FC = () => {
