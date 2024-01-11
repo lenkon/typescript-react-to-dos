@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import './App.css';
 import InputField from './components/InputField';
-import { Todos } from './model';
-import ToDosList from './components/TodoList';
+import { Todo } from './model';
+import TodoList from './components/TodoList';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<string>("");
-  const [list, setList] = useState<Todos[]>([]);
-  const [completedTodos, setCompletedTodos] = useState<Todos[]>([]);
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
 
   // const handleAdd = (e: React.ChangeEvent<HTMLInputElement>) => {
   // const handleAdd = (e: React.SyntheticEvent) => {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (todos) {
-      setList([...list, {id: Date.now(), todos, isDone: false}]);
+    if (todo) {
+      setTodos([...todos, {id: Date.now(), todo, isDone: false}]);
       // Empty the input field
-      setTodos("");
+      setTodo("");
     }
   };
 
@@ -70,7 +70,7 @@ const App: React.FC = () => {
     }
 
     let add;
-    let active = list;
+    let active = todos;
     let complete = completedTodos;
     // Source Logic
     if (source.droppableId === "Active") {
@@ -89,7 +89,7 @@ const App: React.FC = () => {
     }
 
     setCompletedTodos(complete);
-    setList(active);
+    setTodos(active);
   };
 
 
@@ -107,10 +107,10 @@ const App: React.FC = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
         <span className="heading">To Dos</span>
-        <InputField todos={todos} setTodos={setTodos} handleAdd={handleAdd} />
-        <ToDosList
-          list={list}
-          setList={setList}
+        <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+        <TodoList
+          todos={todos}
+          setTodos={setTodos}
           completedTodos={completedTodos}
           setCompletedTodos={setCompletedTodos}
         />

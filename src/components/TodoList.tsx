@@ -1,18 +1,18 @@
 import React from 'react';
 // rafce
-import { Todos } from '../model';
+import { Todo } from '../model';
 import "./styles.css";
 import SingleTodos from './SingleTodo';
 import { Droppable } from 'react-beautiful-dnd'
 
 interface Props {
-  list: Todos[];
-  setList: React.Dispatch<React.SetStateAction<Todos[]>>;
-  completedTodos: Todos[];
-  setCompletedTodos: React.Dispatch<React.SetStateAction<Todos[]>>;
+  todos: Todo[];
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  completedTodos: Todo[];
+  setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-const ToDosList: React.FC<Props> = ({list, setList, completedTodos, setCompletedTodos}) => {
+const TodoList: React.FC<Props> = ({todos, setTodos, completedTodos, setCompletedTodos}) => {
   // return (    
   //   <div className="container">
   //     <Droppable droppableId='TodosActive'>
@@ -76,13 +76,13 @@ const ToDosList: React.FC<Props> = ({list, setList, completedTodos, setCompleted
             {...provided.droppableProps}
           >
             <span className="todos-heading">Active Tasks</span>
-            {list?.map((todo, index) => (
+            {todos?.map((todo, index) => (
               <SingleTodos
                 index={index}
-                list={list}
+                todos={todos}
                 todo={todo}
                 key={todo.id}
-                setList={setList}
+                setTodos={setTodos}
               />
             ))}
             {provided.placeholder}
@@ -102,10 +102,10 @@ const ToDosList: React.FC<Props> = ({list, setList, completedTodos, setCompleted
             {completedTodos?.map((todo, index) => (
               <SingleTodos
                 index={index}
-                list={completedTodos}
+                todos={completedTodos}
                 todo={todo}
                 key={todo.id}
-                setList={setCompletedTodos}
+                setTodos={setCompletedTodos}
               />
             ))}
             {provided.placeholder}
@@ -117,4 +117,4 @@ const ToDosList: React.FC<Props> = ({list, setList, completedTodos, setCompleted
 
 };
 
-export default ToDosList
+export default TodoList

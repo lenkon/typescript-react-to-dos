@@ -1,39 +1,39 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Todos } from '../model';
+import { Todo } from '../model';
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { Draggable } from 'react-beautiful-dnd';
 
 type Props = {
   index: number;  
-  todo: Todos;
-  list: Todos[];
-  setList: React.Dispatch<React.SetStateAction<Todos[]>>;
+  todo: Todo;
+  todos: Todo[];
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-const SingleTodos = ({ index, todo, list, setList }: Props) => {
+const SingleTodos = ({ index, todo, todos, setTodos }: Props) => {
   const [edit, setEdit] = useState<boolean>(false);
-  const [editTodo, setEditTodo] = useState<string>(todo.todos);
+  const [editTodo, setEditTodo] = useState<string>(todo.todo);
 
   const handleDone = (id: number) => {
-    setList(
-      list.map((el) => 
+    setTodos(
+      todos.map((el) => 
         el.id === id ? { ...el, isDone: !el.isDone } : el
       )
     );
   };
 
   const handleDelete = (id: number) => {
-    setList(
-      list.filter((el) => el.id !== id)
+    setTodos(
+      todos.filter((el) => el.id !== id)
     );
   };
 
   const handleEdit = (e: React.FormEvent, id: number) => {
     e.preventDefault();
 
-    setList(list.map((el) => (
-      el.id === id ? {...el, todos:editTodo } : el
+    setTodos(todos.map((el) => (
+      el.id === id ? {...el, todo:editTodo } : el
     )));
 
     setEdit(false);
@@ -64,9 +64,9 @@ const SingleTodos = ({ index, todo, list, setList }: Props) => {
                   className='todos-single--text'/>
               ) : 
                 todo.isDone ? (
-                  <s className='todos-single--text'>{ todo.todos }</s>
+                  <s className='todos-single--text'>{ todo.todo }</s>
                 ) : (
-                  <span className='todos-single--text'>{ todo.todos }</span>
+                  <span className='todos-single--text'>{ todo.todo }</span>
                 )        
             }
             
@@ -84,10 +84,8 @@ const SingleTodos = ({ index, todo, list, setList }: Props) => {
             </div>
           </form>
         )
-      }
-      
+      }      
     </Draggable>
-
   )
 }
 

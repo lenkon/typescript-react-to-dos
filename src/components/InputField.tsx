@@ -3,14 +3,14 @@ import "./styles.css"
 // rafce
 
 interface Props{
-  todos: string; 
-  setTodos: React.Dispatch<React.SetStateAction<string>>;
+  todo: string; 
+  setTodo: React.Dispatch<React.SetStateAction<string>>;
   handleAdd: (e: React.FormEvent) => void;
 }
 
 // const InputField = ({todos, setTodos}:{todos:string, setTodos:React.Dispatch<React.SetStateAction<string>>}) => {
 // const InputField = ({ todos, setTodos }: Props) => {  
-const InputField: React.FC<Props> = ({ todos, setTodos, handleAdd }) => { 
+const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => { 
   // const InputField = () => { 
 
   // Remove the blur on submission
@@ -24,9 +24,9 @@ const InputField: React.FC<Props> = ({ todos, setTodos, handleAdd }) => {
       <input 
         ref={inputRef}
         type='input' 
-        value={todos}
+        value={todo}
         onChange={
-          (e) => setTodos(e.target.value)
+          (e) => setTodo(e.target.value)
         }
         placeholder='Enter a task' 
         className='input_box'>
