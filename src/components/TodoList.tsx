@@ -2,7 +2,7 @@ import React from 'react';
 // rafce
 import { Todo } from '../model';
 import "./styles.css";
-import SingleTodos from './SingleTodo';
+import SingleTodo from './SingleTodo';
 import { Droppable } from 'react-beautiful-dnd'
 
 interface Props {
@@ -68,7 +68,7 @@ const TodoList: React.FC<Props> = ({todos, setTodos, completedTodos, setComplete
 
   return (
     <div className="container">
-      <Droppable droppableId="Active">
+      <Droppable droppableId="List">
         {(provided, snapshot) => (
           <div
             className={`todos ${snapshot.isDraggingOver ? "dragactive" : ""}`}
@@ -77,7 +77,7 @@ const TodoList: React.FC<Props> = ({todos, setTodos, completedTodos, setComplete
           >
             <span className="todos-heading">Active Tasks</span>
             {todos?.map((todo, index) => (
-              <SingleTodos
+              <SingleTodo
                 index={index}
                 todos={todos}
                 todo={todo}
@@ -100,7 +100,7 @@ const TodoList: React.FC<Props> = ({todos, setTodos, completedTodos, setComplete
           >
             <span className="todos-heading">Completed Tasks</span>
             {completedTodos?.map((todo, index) => (
-              <SingleTodos
+              <SingleTodo
                 index={index}
                 todos={completedTodos}
                 todo={todo}

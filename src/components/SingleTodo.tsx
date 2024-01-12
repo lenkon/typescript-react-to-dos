@@ -33,7 +33,7 @@ const SingleTodos = ({ index, todo, todos, setTodos }: Props) => {
     e.preventDefault();
 
     setTodos(todos.map((el) => (
-      el.id === id ? {...el, todo:editTodo } : el
+      el.id === id ? {...el, todo: editTodo } : el
     )));
 
     setEdit(false);
@@ -86,7 +86,7 @@ const SingleTodos = ({ index, todo, todos, setTodos }: Props) => {
         )
       }      
     </Draggable>
-  )
-}
+  );
+};
 
 export default SingleTodos

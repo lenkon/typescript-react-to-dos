@@ -30,12 +30,13 @@ const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
           (e) => setTodo(e.target.value)
         }
         placeholder='Enter a task' 
-        className='input_box'>
+        className='input_box'
+      />
 
-      </input>
+      {/* </input> */}
       <button className='input_submit' type='submit'>Go</button>
     </form>
-  )
-}
+  );
+};
 
 export default InputField

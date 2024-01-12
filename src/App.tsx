@@ -58,6 +58,8 @@ const App: React.FC = () => {
   const onDragEnd = (result: DropResult) => {
     const { destination, source } = result;
 
+    console.log(result);
+
     if (!destination) {
       return;
     }
@@ -73,7 +75,7 @@ const App: React.FC = () => {
     let active = todos;
     let complete = completedTodos;
     // Source Logic
-    if (source.droppableId === "Active") {
+    if (source.droppableId === "List") {
       add = active[source.index];
       active.splice(source.index, 1);
     } else {
@@ -82,9 +84,9 @@ const App: React.FC = () => {
     }
 
     // Destination Logic
-    if (destination.droppableId === "Active") {
+    if (destination.droppableId === "List") {
       active.splice(destination.index, 0, add);
-    } else {
+    } else if (destination.droppableId === "TodosRemove") {
       complete.splice(destination.index, 0, add);
     }
 
