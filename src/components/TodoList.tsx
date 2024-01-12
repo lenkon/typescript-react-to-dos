@@ -89,7 +89,7 @@ const TodoList: React.FC<Props> = ({todos, setTodos, completedTodos, setComplete
           </div>
         )}
       </Droppable>
-      <Droppable droppableId="TodosRemove">
+      <Droppable droppableId="ListRemove">
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}

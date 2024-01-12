@@ -86,7 +86,7 @@ const App: React.FC = () => {
     // Destination Logic
     if (destination.droppableId === "List") {
       active.splice(destination.index, 0, add);
-    } else if (destination.droppableId === "TodosRemove") {
+    } else if (destination.droppableId === "ListRemove") {
       complete.splice(destination.index, 0, add);
     }
 
