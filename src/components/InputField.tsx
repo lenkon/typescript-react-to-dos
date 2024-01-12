@@ -23,7 +23,8 @@ const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
       }}>
       <input 
         ref={inputRef}
-        type='input' 
+        // type='input' 
+        type='text' 
         value={todo}
         onChange={
           (e) => setTodo(e.target.value)
