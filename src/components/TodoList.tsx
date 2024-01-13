@@ -3,7 +3,8 @@ import React from 'react';
 import { Todo } from '../model';
 import "./styles.css";
 import SingleTodo from './SingleTodo';
-import { Droppable } from 'react-beautiful-dnd'
+// import { Droppable } from 'react-beautiful-dnd'
+import { StrictModeDroppable as Droppable } from '../helpers/StrictModeDroppable';
 
 interface Props {
   todos: Todo[];
