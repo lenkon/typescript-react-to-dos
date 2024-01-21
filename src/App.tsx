@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import './App.css';
 import InputField from './components/InputField';
-import { Todo } from './model';
+import TodoReducer, { Todo } from './model';
 import TodoList from './components/TodoList';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
+
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
+  const [state, dispatch] = useReducer(TodoReducer, []);
   const [todos, setTodos] = useState<Todo[]>([]);
   const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
-
+  
   // const handleAdd = (e: React.ChangeEvent<HTMLInputElement>) => {
   // const handleAdd = (e: React.SyntheticEvent) => {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (todo) {
-      setTodos([...todos, {id: Date.now(), todo, isDone: false}]);
+      // setTodos([...todos, {id: Date.now(), todo, isDone: false}]);
+      dispatch({ type: "add", payload: todo });
+      setTodos(state);
       // Empty the input field
       setTodo("");
     }
@@ -91,7 +95,7 @@ const App: React.FC = () => {
     }
 
     setCompletedTodos(complete);
-    setTodos(active);
+    // setTodos(active);
   };
 
 

@@ -32,17 +32,17 @@ const TodoReducer = (state: Todo[], action: Actions) => {
   }
 }
 
-const [state, dispatch] = useReducer(TodoReducer,[]);
+export default TodoReducer;
 
-import React from 'react'
-import { Action } from "redux";
+// const [state, dispatch] = useReducer(TodoReducer,[]);
 
-const ReducerExample = () => {
-  return (
-    <div>
+
+// const ReducerExample = () => {
+//   return (
+//     <div>
       
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default ReducerExample;
+// export default ReducerExample;
