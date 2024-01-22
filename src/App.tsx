@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import './App.css';
 import InputField from './components/InputField';
 import TodoReducer, { Todo } from './model';
@@ -12,6 +12,10 @@ const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
   
+  useEffect(() => {
+    setTodos(state);
+  }, [state]);
+
   // const handleAdd = (e: React.ChangeEvent<HTMLInputElement>) => {
   // const handleAdd = (e: React.SyntheticEvent) => {
   const handleAdd = (e: React.FormEvent) => {
@@ -20,12 +24,13 @@ const App: React.FC = () => {
     if (todo) {
       // setTodos([...todos, {id: Date.now(), todo, isDone: false}]);
       dispatch({ type: "add", payload: todo });
-      setTodos(state);
+      // setTodos(state);
       // Empty the input field
       setTodo("");
     }
   };
 
+  
   // const onDragEnd = (result: DropResult) => {
   //   console.log('result:', result);
   //   // const { destination, source } = result;
