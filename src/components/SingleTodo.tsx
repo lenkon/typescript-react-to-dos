@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useReducer } from 'react';
 import { Todo } from '../model';
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { Draggable } from 'react-beautiful-dnd';
+
+import TodoReducer from '../model';
 
 type Props = {
   index: number;  
@@ -15,6 +17,8 @@ const SingleTodos = ({ index, todo, todos, setTodos }: Props) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
 
+  const [state, dispatch] = useReducer(TodoReducer, []);
+  
   const handleDone = (id: number) => {
     setTodos(
       todos.map((el) => 
@@ -24,9 +28,10 @@ const SingleTodos = ({ index, todo, todos, setTodos }: Props) => {
   };
 
   const handleDelete = (id: number) => {
-    setTodos(
-      todos.filter((el) => el.id !== id)
-    );
+    // setTodos(
+    //   todos.filter((el) => el.id !== id)
+    // );
+    dispatch({ type: "remove", payload: id });    
   };
 
   const handleEdit = (e: React.FormEvent, id: number) => {
