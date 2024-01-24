@@ -36,6 +36,7 @@ const SingleTodos = ({ index, todo, todos, dispatch }: Props) => {
     //     el.id === id ? { ...el, isDone: !el.isDone } : el
     //   )
     // );
+    dispatch({ type: "done", payload: id });
   };
 
   const handleDelete = (id: number) => {
