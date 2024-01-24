@@ -53,15 +53,15 @@ const SingleTodos = ({ index, todo, todos, dispatch }: Props) => {
     // setTodos(todos.map((el) => (
     //   el.id === id ? {...el, todo: editTodo } : el
     // )));
-
+    dispatch({ type: "edit", payload: { id, todo: editTodo } }); 
     setEdit(false);
   };
   
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // useEffect(() => {
-  //   inputRef.current?.focus();
-  // }, [edit]);
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [edit]);
     
   return (
     <Draggable draggableId={todo.id.toString()} index={index}>
