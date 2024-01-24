@@ -1,41 +1,59 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useReducer } from 'react';
 import { Todo } from '../model';
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { Draggable } from 'react-beautiful-dnd';
 
+import TodoReducer from '../model';
+
+type Actions = 
+| { type: 'add', payload: string }
+| { type: 'remove', payload: number }
+| { type: 'done', payload: number }
+| { type: 'edit', payload: { id: number; todo: string } };
+
 type Props = {
   index: number;  
   todo: Todo;
   todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  // setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  // setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  // setTodos: (value: Actions) => void;
+  dispatch: (value: Actions) => void;
 }
 
-const SingleTodos = ({ index, todo, todos, setTodos }: Props) => {
+// const SingleTodos = ({ index, todo, todos, setTodos }: Props) => {
+const SingleTodos = ({ index, todo, todos, dispatch }: Props) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
 
+  // const [state, dispatch] = useReducer(TodoReducer, []);
+  // const [state, dispatch] = useReducer(TodoReducer, todos); // Use a different name for the state variable
+
   const handleDone = (id: number) => {
-    setTodos(
-      todos.map((el) => 
-        el.id === id ? { ...el, isDone: !el.isDone } : el
-      )
-    );
+    // setTodos(
+    //   todos.map((el) => 
+    //     el.id === id ? { ...el, isDone: !el.isDone } : el
+    //   )
+    // );
+    dispatch({ type: "done", payload: id });
   };
 
   const handleDelete = (id: number) => {
-    setTodos(
-      todos.filter((el) => el.id !== id)
-    );
+    // setTodos(
+    //   todos.filter((el) => el.id !== id)
+    // );
+    dispatch({ type: "remove", payload: id });    
+    // setTodos(state);
   };
 
   const handleEdit = (e: React.FormEvent, id: number) => {
     e.preventDefault();
 
-    setTodos(todos.map((el) => (
-      el.id === id ? {...el, todo: editTodo } : el
-    )));
-
+    // setTodos(todos.map((el) => (
+    //   el.id === id ? {...el, todo: editTodo } : el
+    // )));
+    dispatch({ type: "edit", payload: { id, todo: editTodo } }); 
     setEdit(false);
   };
   
