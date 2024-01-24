@@ -10,6 +10,7 @@ type Actions =
 | { type: 'add', payload: string }
 | { type: 'remove', payload: number }
 | { type: 'done', payload: number }
+| { type: 'edit', payload: { id: number; todo: string } };
 
 const TodoReducer = (state: Todo[], action: Actions) => {
   switch (action.type) {
@@ -27,6 +28,11 @@ const TodoReducer = (state: Todo[], action: Actions) => {
         el.id === action.payload ? { ...el, isDone: !el.isDone } : el
     );
 
+    case "edit":
+      return state.map((el) =>
+        el.id === action.payload.id ? { ...el, todo: action.payload.todo } : el
+      );
+      
     default:
       return state;
   }

@@ -9,12 +9,12 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
   const [state, dispatch] = useReducer(TodoReducer, []);
-  const [todos, setTodos] = useState<Todo[]>([]);
+  // const [todos, setTodos] = useState<Todo[]>([]);
   const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
   
-  useEffect(() => {
-    setTodos(state);
-  }, [state]);
+  // useEffect(() => {
+  //   setTodos(state);
+  // }, [state]);
 
   // const handleAdd = (e: React.ChangeEvent<HTMLInputElement>) => {
   // const handleAdd = (e: React.SyntheticEvent) => {
@@ -30,44 +30,8 @@ const App: React.FC = () => {
     }
   };
 
-  
-  // const onDragEnd = (result: DropResult) => {
-  //   console.log('result:', result);
-  //   // const { destination, source } = result;
-  //   const { source, destination } = result;
-
-  //   if(!destination) return;
-
-  //   if(destination.droppableId === source.droppableId && destination.index === source.index) return;
-
-  //   let add, 
-  //     active = list,
-  //     complete = completedTodos;
-
-  //   if(source.droppableId === 'TodosActive') {
-  //     add = active[source.index];
-  //     active.splice(source.index, 1);
-  //   } else {
-  //     add = complete[source.index];
-  //     complete.splice(source.index, 1);
-  //   }
-
-  //   if(destination.droppableId === 'TodosActive') {
-  //     active.splice(destination.index, 0, add);      
-  //   } else {      
-  //     complete.splice(destination.index, 0, add);
-  //   }
-
-  //   setCompletedTodos(complete);
-  //   setList(active);
-
-  // }
-
-
   const onDragEnd = (result: DropResult) => {
     const { destination, source } = result;
-
-    console.log(result);
 
     if (!destination) {
       return;
@@ -81,7 +45,8 @@ const App: React.FC = () => {
     }
 
     let add;
-    let active = todos;
+    // let active = todos;
+    let active = state;
     let complete = completedTodos;
     // Source Logic
     if (source.droppableId === "List") {
@@ -103,25 +68,14 @@ const App: React.FC = () => {
     // setTodos(active);
   };
 
-
-  // return (
-  //   <DragDropContext onDragEnd={onDragEnd}>
-  //     <div className="App">
-  //       <span className='heading'>To Dos</span>
-  //       <InputField todos={todos} setTodos={setTodos} handleAdd={handleAdd}/>      
-  //       <ToDosList list={list} setList={setList} completedTodos={completedTodos} setCompletedTodos={setCompletedTodos}/>        
-  //     </div>
-  //   </DragDropContext>
-  // );
-
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
         <span className="heading">To Dos</span>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
         <TodoList
-          todos={todos}
-          setTodos={setTodos}
+          todos={state}
+          dispatch={dispatch}
           completedTodos={completedTodos}
           setCompletedTodos={setCompletedTodos}
         />
